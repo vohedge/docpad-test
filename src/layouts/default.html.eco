@@ -1,0 +1,30 @@
+<html>
+<head>
+<title><%= @document.title %> | My Website</title>
+
+<%- @getBlock("styles").add(["/vendor/bootstrap-3.1.1-dist/css/bootstrap-theme.min.css"]).toHTML() %>
+<%- @getBlock("styles").add(["/vendor/bootstrap-3.1.1-dist/css/bootstrap.min.css"]).toHTML() %>
+<%- @getBlock("styles").add(["/css/custom.css"]).toHTML() %>
+<%- @getBlock("scripts").add(["/vendor/bootstrap-3.1.1-dist/js/bootstrap.min.js"]).toHTML() %>
+
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <p class="mod-title icon-home"><a href="/">Web Team Docs</a></p>
+      <p class="mod-message">
+        <small>"Keep your code simple and <a href="http://e-words.jp/w/DRYE58E9FE58987.html">
+        <abbr title="Don't Repeat Yourself">DRY</abbr></a>!"</small>
+      </p>
+      <%- @partial('menu', {menuItems: @generateMenu(@document.url)}) %>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1><%= @document.title %></h1>
+      <%- @content %>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

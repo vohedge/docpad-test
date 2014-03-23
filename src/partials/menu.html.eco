@@ -1,0 +1,22 @@
+<% depth = 0 %>
+<% renderMenu = (items) => %>
+  <% depth++ %>
+  <ul<% if depth == 1: %> class="nav "<% end %>>
+    <% for item in items: %>
+      <li class="mod-contents_list-item is-depth<%= depth %> <% if item.state: %>is-current<% end %>">
+        <% if item.state != 'current': %>
+          <a href="<%= item.url %>"><%= item.title %></a>
+        <% else: %>
+          <strong><%= item.title %></strong>
+        <% end %>
+        <% if item.children: %>
+          <%- renderMenu(item.children) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>   
+  <% depth-- %>
+<% end %>
+
+<%= renderMenu @menuItems %>
+
